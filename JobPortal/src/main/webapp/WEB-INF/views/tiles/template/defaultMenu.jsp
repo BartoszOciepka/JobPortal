@@ -1,0 +1,1 @@
+<a href="/ProjectManager/employee/list">All employees</a><a href="/ProjectManager/project/list">All projects</a><a href="/ProjectManager/employee/add">Add employee</a> <a href="/ProjectManager/project/add">Add project</a>
