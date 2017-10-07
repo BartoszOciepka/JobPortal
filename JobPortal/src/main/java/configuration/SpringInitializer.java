@@ -10,6 +10,9 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 public class SpringInitializer implements WebApplicationInitializer {
 
+	/**
+	 * Default Dispatcher Servlet
+	 */
 	public void onStartup(ServletContext container) throws ServletException {
 		AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
 		ctx.register(SpringConfig.class);

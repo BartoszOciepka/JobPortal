@@ -3,20 +3,18 @@
 <tiles-definitions>
 
 	<!-- Base Definition -->
-	<definition name="base-definition"
-		template="/WEB-INF/views/tiles/layouts/defaultLayout.jsp">
+	<definition name="base-definition" template="/WEB-INF/views/tiles/layouts/jobPortalLayout.jsp">
 		<put-attribute name="title" value="" />
-		<put-attribute name="menu"
-			value="/WEB-INF/views/tiles/template/defaultMenu.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/views/tiles/template/jobPortalMenu.jsp" />
 	</definition>
 
-	<!-- All Employees Page -->
-	<definition name="default" extends="base-definition">
-		<put-attribute name="title" value="Default" />
-		<put-attribute name="body" value="/WEB-INF/views/pages/default.jsp" />
+	<!-- Search Page -->
+	<definition name="search" extends="base-definition">
+		<put-attribute name="title" value="Search" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/search.jsp" />
 	</definition>
 	
-		<!-- Add JobOffer Page -->
+		<!-- Add Job Offer Page -->
 	<definition name="addOffer" extends="base-definition">
 		<put-attribute name="title" value="Add job offer" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/addeditjoboffer.jsp" />
@@ -27,7 +25,4 @@
 		<put-attribute name="title" value="Add qualification" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/addeditqualification.jsp" />
 	</definition>
-
-	
-
 </tiles-definitions>

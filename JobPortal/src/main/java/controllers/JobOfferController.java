@@ -1,10 +1,7 @@
 package controllers;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
 import models.JobOffer;
 import models.JobOfferDao;
 import models.Qualification;
@@ -36,25 +32,24 @@ public class JobOfferController {
 	QualificationDao qualificationDao;
 
 	@RequestMapping(value="/add", method = RequestMethod.GET)
-	public String sayHello(Model model) {
-		JobOffer jobOffer = new JobOffer();
-		model.addAttribute("jobOffer", jobOffer);
+	public String addOffer(Model model) {
+		model.addAttribute("jobOffer", new JobOffer());
 		return "addOffer";
 	}
 	
 	@RequestMapping(value="/add", method = RequestMethod.POST)
-	public String sayHello2(@Valid JobOffer jobOffer, BindingResult result) {
-		if(result.hasErrors()) {
-			return "addOffer";
+	public String addOffer(@ModelAttribute("jobOffer")@Valid JobOffer jobOffer, BindingResult result) {
+		if(result.hasErrors()) return "addOffer";
+		else {
+			jobOfferDao.save(jobOffer);
+			return "redirect:/";
 		}
-		jobOfferDao.save(jobOffer);
-		return "redirect:/";
 	}
 	
 	@RequestMapping(value="/delete/{id}")
 	public String deleteJobOffer(@PathVariable(value="id")Long id) {
 		jobOfferDao.delete(id);
-		return "default";
+		return "redirect:/";
 	}
 
 	@ModelAttribute("qualifications")

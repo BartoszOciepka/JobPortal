@@ -9,9 +9,10 @@ public class QualificationIdToQualificationConverter implements Converter<Object
 	@Autowired
 	QualificationDao qualificationDao;
 	
+	@Override
 	public Qualification convert(Object element) {
 		Long id = Long.parseLong((String)element);
-		Qualification  qualification = qualificationDao.findOne(id);
+		Qualification qualification = qualificationDao.findOne(id);
 		return qualification;
 	}
 }
