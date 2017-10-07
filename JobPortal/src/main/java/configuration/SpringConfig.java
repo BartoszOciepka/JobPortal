@@ -13,27 +13,35 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 
+import models.*;
+
+@SuppressWarnings("deprecation")
 @Configuration
 @EnableWebMvc
 @ComponentScan("controllers")
 @ComponentScan("models")
 @PropertySource("classpath:application.properties")
 @EnableJpaRepositories("models")
-public class SpringConfig {
+public class SpringConfig extends WebMvcConfigurerAdapter{
 	@Autowired
 	private Environment env;
+	
+	@Autowired
+	QualificationIdToQualificationConverter qualificationIdToQualificationConverter;
 	/**
 	 * Configure TilesConfigurer.
 	 */
@@ -110,4 +118,12 @@ public class SpringConfig {
 		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
 		return properties;
 	}
+	
+    /**
+     * Configure Converter to be used.
+     * In our example, we need a converter to convert string values[Roles] to UserProfiles in newUser.jsp
+     */
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(qualificationIdToQualificationConverter);
+    }
 }

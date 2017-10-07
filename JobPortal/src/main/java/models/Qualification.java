@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Qualification {
@@ -14,8 +15,9 @@ public class Qualification {
 	@Id
 	@GeneratedValue
 	Long id;
+	@NotBlank
 	@Column
-	String qualification;
+	String name;
 	@ManyToMany(mappedBy="qualifications")
 	List<JobOffer> jobOffers;
 	public Long getId() {
@@ -24,11 +26,11 @@ public class Qualification {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getQualification() {
-		return qualification;
+	public String getName() {
+		return name;
 	}
-	public void setQualification(String qualification) {
-		this.qualification = qualification;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public List<JobOffer> getJobOffers() {
 		return jobOffers;

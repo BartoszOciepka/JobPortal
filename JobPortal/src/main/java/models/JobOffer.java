@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotBlank;
 import javax.persistence.JoinColumn;
 
 @Entity
@@ -41,10 +42,13 @@ public class JobOffer {
 	public void setCity(String city) {
 		this.city = city;
 	}
+	@NotBlank
 	@Column
 	String name;
+	@NotBlank
 	@Column
 	String description;
+	@NotBlank
 	@Column
 	String city;
 	public List<Qualification> getQualifications() {
@@ -64,4 +68,8 @@ public class JobOffer {
 			})
 	private List<Qualification> qualifications;
 	
+	
+	public String toString() {
+		return name + " " + city;
+	}
 }
