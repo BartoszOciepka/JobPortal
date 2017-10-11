@@ -14,15 +14,20 @@
 		<put-attribute name="body" value="/WEB-INF/views/pages/search.jsp" />
 	</definition>
 	
-		<!-- Add Job Offer Page -->
+	<!-- Add Job Offer Page -->
 	<definition name="addOffer" extends="base-definition">
 		<put-attribute name="title" value="Add job offer" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/addeditjoboffer.jsp" />
 	</definition>
 	
-			<!-- Add Qualification Page -->
+	<!-- Add Qualification Page -->
 	<definition name="addQualification" extends="base-definition">
 		<put-attribute name="title" value="Add qualification" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/addeditqualification.jsp" />
+	</definition>
+	<!-- Show Job Offer Page -->
+	<definition name="showOffer" extends="base-definition">
+		<put-attribute name="title" value="Job offer" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/showjoboffer.jsp" />
 	</definition>
 </tiles-definitions>

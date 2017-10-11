@@ -26,11 +26,11 @@ public class QualificationController {
 	}
 
 	@RequestMapping(value="/add", method = RequestMethod.POST)
-	public String addQualification(@ModelAttribute("qualification")@Valid Qualification qualification, BindingResult result) {
+	public String addQualification(@ModelAttribute("qualification")@Valid Qualification qualification, BindingResult result, Model model) {
 		if(result.hasErrors()) return "addQualification";
 		else {
 			qualificationDao.save(qualification);
-			return "addQualification";
+			return "redirect:/";
 		}
 	}
 

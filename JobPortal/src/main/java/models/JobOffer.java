@@ -4,6 +4,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -26,7 +27,7 @@ public class JobOffer {
 	@NotBlank
 	@Column
 	String name;
-	@ManyToMany(cascade = CascadeType.MERGE)
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinTable(
 			name="job_qual",
 			joinColumns= {@JoinColumn(name="joboffer", 
