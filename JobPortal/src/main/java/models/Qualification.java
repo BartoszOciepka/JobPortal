@@ -17,7 +17,7 @@ public class Qualification {
 	@ManyToMany(mappedBy="qualifications")
 	List<JobOffer> jobOffers;
 	@NotBlank
-	@Column
+	@Column(unique=true)
 	String name;
 	public Long getId() {
 		return id;

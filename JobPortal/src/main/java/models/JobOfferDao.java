@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface JobOfferDao extends CrudRepository<JobOffer, Long>{
 	List<JobOffer> findAll();
-	List<JobOffer> findByNameContainingIgnoreCaseAndCityLikeIgnoreCase(String phrase, String city);
+	List<JobOffer> findByNameContainingIgnoreCaseAndCityContainingIgnoreCase(String phrase, String city);
 }

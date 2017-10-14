@@ -1,6 +1,8 @@
 package controllers;
 
 import javax.validation.Valid;
+
+import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +31,17 @@ public class QualificationController {
 	public String addQualification(@ModelAttribute("qualification")@Valid Qualification qualification, BindingResult result, Model model) {
 		if(result.hasErrors()) return "addQualification";
 		else {
-			qualificationDao.save(qualification);
+			try {
+				qualificationDao.save(qualification);
+			}
+			catch (Exception pex) {
+				if(checkDuplicateValue(qualification)) {
+					model.addAttribute("qualificationError", "Duplicate values are illegal");
+					return "addQualification";	
+				}
+				model.addAttribute("errorMessage", pex.getMessage());
+				return "error";
+			}
 			return "redirect:/";
 		}
 	}
@@ -38,5 +50,10 @@ public class QualificationController {
 	public String deleteQualification(@PathVariable("id") Long id) {
 		qualificationDao.delete(qualificationDao.findOne(id));
 		return "redirect:/qualification/add";
+	}
+	
+	public boolean checkDuplicateValue(Qualification qualification) {
+		if(!qualificationDao.findByName(qualification.getName()).isEmpty()) return true;
+		return false;
 	}
 }

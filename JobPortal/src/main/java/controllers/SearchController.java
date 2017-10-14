@@ -28,7 +28,7 @@ public class SearchController {
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public String search(@ModelAttribute("search") Search search, BindingResult result, Model model) {
-		List<JobOffer> jobOffers = jobOfferDao.findByNameContainingIgnoreCaseAndCityLikeIgnoreCase(search.getPhrase(), search.getCity());
+		List<JobOffer> jobOffers = jobOfferDao.findByNameContainingIgnoreCaseAndCityContainingIgnoreCase(search.getPhrase(), search.getCity());
 		model.addAttribute("offers", jobOffers);
 		return "search";
 	}

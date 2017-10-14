@@ -17,20 +17,20 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
-import models.QualificationIdToQualificationConverter;
+import utils.QualificationIdToQualificationConverter;
 
-@SuppressWarnings("deprecation")
 @Configuration
 @EnableWebMvc
 @ComponentScan("controllers")
 @ComponentScan("models")
+@ComponentScan("utils")
 @PropertySource("classpath:application.properties")
 @EnableJpaRepositories("models")
-public class SpringConfig extends WebMvcConfigurerAdapter {
+public class SpringConfig implements WebMvcConfigurer {
 	@Autowired
 	private Environment env;
 	@Autowired
@@ -76,7 +76,7 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		vendorAdapter.setGenerateDdl(true);
+		vendorAdapter.setGenerateDdl(true);  
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 		factory.setJpaVendorAdapter(vendorAdapter);
 		factory.setPackagesToScan("models");
@@ -114,7 +114,7 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
 	}
 
 	/**
-	 * Configure Converter to be used.d
+	 * Configure Converter to be used
 	 */
 	public void addFormatters(FormatterRegistry registry) {
 		registry.addConverter(qualificationIdToQualificationConverter);

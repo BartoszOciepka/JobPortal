@@ -23,5 +23,5 @@
 </form:form>
 
 <c:forEach var="offer" items="${offers}">
-	${offer}<br />
+	${offer} <a href = /JobPortal/offer/show/${offer.id}>More</a><br />
 </c:forEach>
