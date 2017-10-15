@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.Iterator;
+
 import javax.validation.Valid;
 
 import org.postgresql.util.PSQLException;
@@ -21,6 +23,12 @@ public class QualificationController {
 	@Autowired
 	QualificationDao qualificationDao;
 
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public String listQualifications(Model model) {
+		model.addAttribute("qualifications", qualificationDao.findAll());
+		return "listQualifications";
+	}
+	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addQualification(Model model) {
 		model.addAttribute("qualification", new Qualification());
@@ -32,28 +40,27 @@ public class QualificationController {
 		if(result.hasErrors()) return "addQualification";
 		else {
 			try {
+				if(checkDuplicateValue(qualification)) {
+					model.addAttribute("qualificationError", "Duplicate values are illegal");
+					return "addQualification";
+				}
 				qualificationDao.save(qualification);
 			}
 			catch (Exception pex) {
-				if(checkDuplicateValue(qualification)) {
-					model.addAttribute("qualificationError", "Duplicate values are illegal");
-					return "addQualification";	
-				}
-				model.addAttribute("errorMessage", pex.getMessage());
-				return "error";
+				return "addQualification";	
 			}
-			return "redirect:/";
+			return "redirect:/qualification/list";
 		}
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public String deleteQualification(@PathVariable("id") Long id) {
 		qualificationDao.delete(qualificationDao.findOne(id));
-		return "redirect:/qualification/add";
+		return "redirect:/qualification/list";
 	}
 	
 	public boolean checkDuplicateValue(Qualification qualification) {
-		if(!qualificationDao.findByName(qualification.getName()).isEmpty()) return true;
+		if(!qualificationDao.findByNameIgnoreCase(qualification.getName()).isEmpty()) return true;
 		return false;
 	}
 }

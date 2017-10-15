@@ -4,10 +4,10 @@
 	<div class="form-group">
 		<div class="row">
 			<div class="col">
-				<label id="qualificationError">${qualificationError}</label>
 				<label for="name">Qualification: </label>
 				<form:input class="form-control" path="name"></form:input>
 				<form:errors path="name" cssclass="error">${nameError}</form:errors>
+				<label id="qualificationError">${qualificationError}</label>
 			</div>
 		</div> 
 	</div>

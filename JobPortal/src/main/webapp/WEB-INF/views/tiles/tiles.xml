@@ -30,10 +30,19 @@
 		<put-attribute name="title" value="Job offer" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/showjoboffer.jsp" />
 	</definition>
-	
 	<!-- Show error message -->
 	<definition name="error" extends="base-definition">
 		<put-attribute name="title" value="Error message" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/error.jsp" />
+	</definition>
+		<!-- Show all qualfications -->
+	<definition name="listQualifications" extends="base-definition">
+		<put-attribute name="title" value="Qualifications" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/listqualifications.jsp" />
+	</definition>
+			<!-- Show all job offers -->
+	<definition name="listJobOffers" extends="base-definition">
+		<put-attribute name="title" value="Job Offers" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/listjoboffers.jsp" />
 	</definition>
 </tiles-definitions>

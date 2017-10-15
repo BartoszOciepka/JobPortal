@@ -57,4 +57,10 @@ public class JobOfferController {
 		jobOfferDao.delete(id);
 		return "redirect:/";
 	}
+	
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public String listJobObbers(Model model) {
+		model.addAttribute("jobOffers", jobOfferDao.findAll());
+		return "listJobOffers";
+	}
 }

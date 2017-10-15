@@ -8,7 +8,9 @@
 	<div class="collapse navbar-collapse" id="navbarNav">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item"><a class="nav-link" href="/JobPortal/offer/add">Add offer</a></li>
+			<li class="nav-item"><a class="nav-link" href="/JobPortal/qualification/list">List qualifications</a></li>
 			<li class="nav-item"><a class="nav-link" href="/JobPortal/qualification/add">Add qualification</a></li>
+			<li class="nav-item"><a class="nav-link" href="/JobPortal/offer/list">List job offers</a></li>
 		</ul>
 	</div>
 </nav>
