@@ -3,9 +3,11 @@
 <tiles-definitions>
 
 	<!-- Base Definition -->
-	<definition name="base-definition" template="/WEB-INF/views/tiles/layouts/jobPortalLayout.jsp">
+	<definition name="base-definition"
+		template="/WEB-INF/views/tiles/layouts/jobPortalLayout.jsp">
 		<put-attribute name="title" value="" />
-		<put-attribute name="menu" value="/WEB-INF/views/tiles/template/jobPortalMenu.jsp" />
+		<put-attribute name="menu"
+			value="/WEB-INF/views/tiles/template/jobPortalMenu.jsp" />
 	</definition>
 
 	<!-- Search Page -->
@@ -13,36 +15,66 @@
 		<put-attribute name="title" value="Search" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/search.jsp" />
 	</definition>
-	
+
 	<!-- Add Job Offer Page -->
 	<definition name="addOffer" extends="base-definition">
 		<put-attribute name="title" value="Add job offer" />
-		<put-attribute name="body" value="/WEB-INF/views/pages/addeditjoboffer.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/addeditjoboffer.jsp" />
 	</definition>
-	
+
 	<!-- Add Qualification Page -->
 	<definition name="addQualification" extends="base-definition">
 		<put-attribute name="title" value="Add qualification" />
-		<put-attribute name="body" value="/WEB-INF/views/pages/addeditqualification.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/addeditqualification.jsp" />
 	</definition>
 	<!-- Show Job Offer Page -->
 	<definition name="showOffer" extends="base-definition">
 		<put-attribute name="title" value="Job offer" />
-		<put-attribute name="body" value="/WEB-INF/views/pages/showjoboffer.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/showjoboffer.jsp" />
 	</definition>
 	<!-- Show error message -->
 	<definition name="error" extends="base-definition">
 		<put-attribute name="title" value="Error message" />
 		<put-attribute name="body" value="/WEB-INF/views/pages/error.jsp" />
 	</definition>
-		<!-- Show all qualfications -->
+	<!-- Show all qualfications -->
 	<definition name="listQualifications" extends="base-definition">
 		<put-attribute name="title" value="Qualifications" />
-		<put-attribute name="body" value="/WEB-INF/views/pages/listqualifications.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/listqualifications.jsp" />
 	</definition>
-			<!-- Show all job offers -->
+	<!-- Show all job offers -->
 	<definition name="listJobOffers" extends="base-definition">
 		<put-attribute name="title" value="Job Offers" />
-		<put-attribute name="body" value="/WEB-INF/views/pages/listjoboffers.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/listjoboffers.jsp" />
+	</definition>
+	<!-- List contract types -->
+	<definition name="listContractTypes" extends="base-definition">
+		<put-attribute name="title" value="Contract Types" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/listcontracttypes.jsp" />
+	</definition>
+	<!-- Add contract type -->
+	<definition name="addContractType" extends="base-definition">
+		<put-attribute name="title" value="Add Contract Type" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/addeditcontracttype.jsp" />
+	</definition>
+
+	<!-- Add company -->
+	<definition name="addCompany" extends="base-definition">
+		<put-attribute name="title" value="Add Company" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/addeditcompany.jsp" />
+	</definition>
+	<!-- List companies -->
+	<definition name="listCompanies" extends="base-definition">
+		<put-attribute name="title" value="All Companies" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/listcompanies.jsp" />
 	</definition>
 </tiles-definitions>

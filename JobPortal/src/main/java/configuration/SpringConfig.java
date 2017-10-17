@@ -21,6 +21,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
+
+import utils.ContractTypeIdToContractTypeConverter;
 import utils.QualificationIdToQualificationConverter;
 
 @Configuration
@@ -35,6 +37,8 @@ public class SpringConfig implements WebMvcConfigurer {
 	private Environment env;
 	@Autowired
 	QualificationIdToQualificationConverter qualificationIdToQualificationConverter;
+	@Autowired
+	ContractTypeIdToContractTypeConverter contractTypeIdToContractTypeConverter;
 
 	/**
 	 * Configure TilesConfigurer.
@@ -76,7 +80,7 @@ public class SpringConfig implements WebMvcConfigurer {
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		vendorAdapter.setGenerateDdl(true);  
+		vendorAdapter.setGenerateDdl(true);
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 		factory.setJpaVendorAdapter(vendorAdapter);
 		factory.setPackagesToScan("models");
@@ -102,7 +106,7 @@ public class SpringConfig implements WebMvcConfigurer {
 	public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
 		return new PersistenceExceptionTranslationPostProcessor();
 	}
-  
+
 	/**
 	 * Additional JpaProperties
 	 */
@@ -118,5 +122,6 @@ public class SpringConfig implements WebMvcConfigurer {
 	 */
 	public void addFormatters(FormatterRegistry registry) {
 		registry.addConverter(qualificationIdToQualificationConverter);
+		registry.addConverter(contractTypeIdToContractTypeConverter);
 	}
 }
